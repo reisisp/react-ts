@@ -17,10 +17,12 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^4.8.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "antd": "^5.0.1",
     "compose-function": "^3.0.3",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
