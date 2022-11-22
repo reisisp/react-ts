@@ -1,6 +1,15 @@
+import { Routing } from "pages";
 import React from "react";
-import "./index.scss";
 
-export default function App() {
-  return <div>Hello world</div>;
-}
+import "./index.scss";
+import { withProviders } from "./providers";
+
+const App = () => {
+  return (
+    <div>
+      <Routing />
+    </div>
+  );
+};
+
+export default withProviders(App);
