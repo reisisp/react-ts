@@ -1,5 +1,6 @@
 import { List } from "antd";
 import TodoCardItem from "entities/todo-card-item";
+import TodoHeader from "entities/todo-header";
 import { useState } from "react";
 import CenteredContainer from "shared/centered-container";
 
@@ -14,7 +15,7 @@ const TodoWidget = () => {
       <List
         size="large"
         className={styles.itemList}
-        header={<div>Header</div>}
+        header={<TodoHeader />}
         footer={<div>Footer</div>}
         bordered
         dataSource={data}
