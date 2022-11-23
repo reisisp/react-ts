@@ -1,5 +1,7 @@
+import TodoWidget from "widgets/todo-widget";
+
 const TodoAppPage = () => {
-  return <div>TodoAppPage</div>;
+  return <TodoWidget />;
 };
 
 export default TodoAppPage;
