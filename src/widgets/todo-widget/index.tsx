@@ -8,12 +8,21 @@ import { ITodoItems } from "./config/task-list-type";
 import styles from "./index.module.scss";
 
 const TodoWidget = () => {
-  const [data] = useState<ITodoItems[]>(taskList);
+  const [data, setData] = useState<ITodoItems[]>(taskList);
+
+  const createNewItem = (newLabel: string) => {
+    return { itemLabel: newLabel };
+  };
+
+  const addItem = (item: string) => {
+    setData([...data, createNewItem(item)]);
+  };
+
   return (
     <List
       size="large"
       className={styles.itemList}
-      header={<TodoHeader />}
+      header={<TodoHeader addItem={addItem} />}
       footer={<div>Footer</div>}
       bordered
       dataSource={data}

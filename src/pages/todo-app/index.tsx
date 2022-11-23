@@ -1,5 +1,5 @@
 import TodoWidget from "widgets/todo-widget";
-import CenteredContainer from "shared/centered-container";
+import CenteredContainer from "shared/ui/centered-container";
 
 const TodoAppPage = () => {
   return (
