@@ -6,14 +6,14 @@ import { TodoHeaderProps, ITodoForm } from "./config/type";
 const TodoHeader: FC<TodoHeaderProps> = ({ addItem }) => {
   const [form] = Form.useForm();
   const onFinish = (values: ITodoForm) => {
-    addItem(values.itemLabel);
+    addItem(values.title);
     form.resetFields();
   };
 
   return (
     <Form form={form} name="addTodo" initialValues={{ remember: true }} onFinish={onFinish} autoComplete="off">
       <Form.Item
-        name="itemLabel"
+        name="title"
         initialValue=""
         validateFirst
         rules={[

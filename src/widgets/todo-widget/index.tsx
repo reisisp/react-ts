@@ -1,10 +1,12 @@
 import { List } from "antd";
-import TodoCardItem from "entities/todo-card-item";
-import TodoFooter from "entities/todo-footer";
-import TodoHeader from "entities/todo-header";
+
 import { useState } from "react";
 
 import { ITodoItem } from "shared/api";
+
+import TodoCardItem from "./ui/todo-card-item";
+import TodoFooter from "./ui/todo-footer";
+import TodoHeader from "./ui/todo-header";
 
 import { taskList } from "./config/task-list";
 import styles from "./index.module.scss";

@@ -3,5 +3,5 @@ export interface TodoHeaderProps {
 }
 
 export interface ITodoForm {
-  itemLabel: string;
+  title: string;
 }
