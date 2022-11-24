@@ -1,5 +1,6 @@
 import { List } from "antd";
 import TodoCardItem from "entities/todo-card-item";
+import TodoFooter from "entities/todo-footer";
 import TodoHeader from "entities/todo-header";
 import { useState } from "react";
 
@@ -11,7 +12,7 @@ const TodoWidget = () => {
   const [data, setData] = useState<ITodoItems[]>(taskList);
 
   const createNewItem = (newLabel: string) => {
-    return { itemLabel: newLabel };
+    return { itemLabel: newLabel, isActive: true };
   };
 
   const addItem = (item: string) => {
@@ -23,7 +24,7 @@ const TodoWidget = () => {
       size="large"
       className={styles.itemList}
       header={<TodoHeader addItem={addItem} />}
-      footer={<div>Footer</div>}
+      footer={<TodoFooter data={data} />}
       bordered
       dataSource={data}
       renderItem={(item) => (
