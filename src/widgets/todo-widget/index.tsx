@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import { ITodoItem } from "shared/api";
 
-import TodoCardItem from "./ui/todo-card-item";
-import TodoFooter from "./ui/todo-footer";
-import TodoHeader from "./ui/todo-header";
+import TodoCardItem from "./ui/card-item";
+import TodoFooter from "./ui/footer";
+import TodoHeader from "./ui/header";
 
 import { taskList } from "./config/task-list";
 import styles from "./index.module.scss";
