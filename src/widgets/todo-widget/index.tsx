@@ -22,12 +22,16 @@ const TodoWidget = () => {
     setData([...data, createNewItem(item)]);
   };
 
+  const removeAllCompleted = () => {
+    setData(data.filter((el) => el.completed));
+  };
+
   return (
     <List
       size="large"
       className={styles.itemList}
       header={<TodoHeader addItem={addItem} />}
-      footer={<TodoFooter data={data} />}
+      footer={<TodoFooter removeAllCompleted={removeAllCompleted} data={data} />}
       bordered
       dataSource={data}
       renderItem={(item) => (
