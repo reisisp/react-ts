@@ -1,4 +1,4 @@
-export function countActive(arr: { isActive: boolean }[]) {
-  const count = arr.filter((el) => (el.isActive ? el : null));
-  return count;
+export function countActive(arr: { completed: boolean }[]) {
+  const count = arr.filter((el: { completed: boolean }) => (el.completed ? el : null));
+  return count.length;
 }
