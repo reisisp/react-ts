@@ -1,5 +1,5 @@
 export const taskList = [
-  { itemLabel: "Task 1", isActive: true },
-  { itemLabel: "Task 2", isActive: false },
-  { itemLabel: "Task 3", isActive: true },
+  { title: "Task 1", completed: true },
+  { title: "Task 2", completed: false },
+  { title: "Task 3", completed: true },
 ];

@@ -4,15 +4,16 @@ import TodoFooter from "entities/todo-footer";
 import TodoHeader from "entities/todo-header";
 import { useState } from "react";
 
+import { ITodoItem } from "shared/api";
+
 import { taskList } from "./config/task-list";
-import { ITodoItems } from "./config/task-list-type";
 import styles from "./index.module.scss";
 
 const TodoWidget = () => {
-  const [data, setData] = useState<ITodoItems[]>(taskList);
+  const [data, setData] = useState<ITodoItem[]>(taskList);
 
-  const createNewItem = (newLabel: string) => {
-    return { itemLabel: newLabel, isActive: true };
+  const createNewItem = (newTitle: string) => {
+    return { title: newTitle, completed: true };
   };
 
   const addItem = (item: string) => {

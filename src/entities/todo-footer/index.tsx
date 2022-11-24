@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { ITodoItems } from "widgets/todo-widget/config/task-list-type";
+import { ITodoItem } from "shared/api";
 
-const TodoFooter: FC<{ data: ITodoItems[] }> = ({ data }) => {
+const TodoFooter: FC<{ data: ITodoItem[] }> = ({ data }) => {
   return <div>{data.length}</div>;
 };
 

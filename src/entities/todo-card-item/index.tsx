@@ -1,9 +1,8 @@
 import { FC } from "react";
+import { ITodoItem } from "shared/api";
 
-import { TodoCardItemProps } from "./config/card-item-type";
-
-const TodoCardItem: FC<TodoCardItemProps> = ({ item }) => {
-  return <span>{item.itemLabel}</span>;
+const TodoCardItem: FC<{ item: ITodoItem }> = ({ item }) => {
+  return <span>{item.title}</span>;
 };
 
 export default TodoCardItem;
