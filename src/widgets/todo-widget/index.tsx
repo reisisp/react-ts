@@ -26,6 +26,10 @@ const TodoWidget = () => {
     setData(data.filter((el) => el.completed));
   };
 
+  function toggleCompleted(title: string) {
+    setData(data.map((el) => (el.title === title ? { ...el, completed: !el.completed } : el)));
+  }
+
   return (
     <List
       size="large"
@@ -36,7 +40,7 @@ const TodoWidget = () => {
       dataSource={data}
       renderItem={(item) => (
         <List.Item>
-          <TodoCardItem item={item} />
+          <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
         </List.Item>
       )}
     />
