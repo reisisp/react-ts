@@ -1,6 +1,6 @@
 import { ITodoItem } from "shared/api";
 
-export function filterData(arr: ITodoItem[], filterName: string): ITodoItem[] {
+export function getFilteredData(arr: ITodoItem[], filterName: string): ITodoItem[] {
   switch (filterName) {
     case "active":
       return arr.filter((el) => el.completed);

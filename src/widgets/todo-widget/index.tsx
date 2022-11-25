@@ -4,13 +4,14 @@ import { useState } from "react";
 
 import { ITodoItem } from "shared/api";
 
+import { getFilteredData } from "entities/lib/get-filtered-data";
+
 import TodoCardItem from "./ui/card-item";
 import TodoFooter from "./ui/footer";
 import TodoHeader from "./ui/header";
 
 import { taskList } from "./config/task-list";
 import styles from "./index.module.scss";
-import { filterData } from "./ui/footer/lib";
 
 const TodoWidget = () => {
   const [data, setData] = useState<ITodoItem[]>(taskList);
@@ -36,7 +37,7 @@ const TodoWidget = () => {
     setData(data.map((el) => (el.title === title ? { ...el, completed: !el.completed } : el)));
   }
 
-  const filteredData = filterData(data, currentFilter);
+  const filteredData = getFilteredData(data, currentFilter);
 
   return (
     <List

@@ -1,17 +1,17 @@
 import { FC, useEffect, useState } from "react";
-import { Col, Row, Typography, Button } from "antd";
+import { Col, Row, Button } from "antd";
 
 import FilterTodos from "features/filter-todos";
+import ActiveCountTodos from "features/active-count-todos";
 
-import { countActive } from "./lib";
+import { getActiveCount } from "entities/lib/get-active-count";
+
 import { TodoFooterProps } from "./config/type";
-
-const { Text } = Typography;
 
 const TodoFooter: FC<TodoFooterProps> = ({ data, currentFilter, removeAllCompleted, changeFilter }) => {
   const [isActive, setIsActive] = useState(true);
 
-  const activeCount = countActive(data);
+  const activeCount = getActiveCount(data);
 
   useEffect(() => {
     if (data.length === activeCount) {
@@ -23,7 +23,7 @@ const TodoFooter: FC<TodoFooterProps> = ({ data, currentFilter, removeAllComplet
   return (
     <Row justify="space-between" align="middle">
       <Col>
-        <Text>{activeCount ? `${activeCount} items left` : "All done"}</Text>
+        <ActiveCountTodos count={activeCount} />
       </Col>
       <Col>
         <FilterTodos currentFilter={currentFilter} changeFilter={changeFilter} />
