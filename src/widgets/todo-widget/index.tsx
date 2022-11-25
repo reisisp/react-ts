@@ -39,7 +39,7 @@ const TodoWidget = () => {
       bordered
       dataSource={data}
       renderItem={(item) => (
-        <List.Item>
+        <List.Item style={{ paddingTop: "10px", paddingBottom: "10px" }}>
           <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
         </List.Item>
       )}
