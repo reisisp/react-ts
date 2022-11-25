@@ -1,17 +1,33 @@
-import { FC } from "react";
-import { Col, Row } from "antd";
+import { FC, useEffect, useState } from "react";
+import { Col, Row, Typography, Button } from "antd";
 
 import { countActive } from "./lib";
 import { TodoFooterProps } from "./config/type";
 
+const { Text } = Typography;
+
 const TodoFooter: FC<TodoFooterProps> = ({ data, removeAllCompleted }) => {
+  const [isActive, setIsActive] = useState(true);
+
   const activeCount = countActive(data);
+
+  useEffect(() => {
+    if (data.length === activeCount) {
+      setIsActive(false);
+    } else {
+      setIsActive(true);
+    }
+  }, [activeCount, data]);
   return (
-    <Row justify="space-between">
-      <Col span={4}>{activeCount ? `${activeCount} items left` : "All done"}</Col>
-      <Col span={4}>col-8</Col>
-      <Col span={4} onClick={removeAllCompleted}>
-        col-8
+    <Row justify="space-between" align="middle">
+      <Col span={4}>
+        <Text>{activeCount ? `${activeCount} items left` : "All done"}</Text>
+      </Col>
+      <Col span={6}>col-8</Col>
+      <Col span={7}>
+        <Button block type="text" disabled={!isActive} onClick={removeAllCompleted}>
+          Remove completed
+        </Button>
       </Col>
     </Row>
   );
