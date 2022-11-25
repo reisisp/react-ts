@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { Col, Row, Typography, Button } from "antd";
 
+import FilterTodos from "features/filter-todos";
+
 import { countActive } from "./lib";
 import { TodoFooterProps } from "./config/type";
 
 const { Text } = Typography;
 
-const TodoFooter: FC<TodoFooterProps> = ({ data, removeAllCompleted }) => {
+const TodoFooter: FC<TodoFooterProps> = ({ data, currentFilter, removeAllCompleted, changeFilter }) => {
   const [isActive, setIsActive] = useState(true);
 
   const activeCount = countActive(data);
@@ -20,11 +22,13 @@ const TodoFooter: FC<TodoFooterProps> = ({ data, removeAllCompleted }) => {
   }, [activeCount, data]);
   return (
     <Row justify="space-between" align="middle">
-      <Col span={4}>
+      <Col>
         <Text>{activeCount ? `${activeCount} items left` : "All done"}</Text>
       </Col>
-      <Col span={6}>col-8</Col>
-      <Col span={7}>
+      <Col>
+        <FilterTodos currentFilter={currentFilter} changeFilter={changeFilter} />
+      </Col>
+      <Col>
         <Button block type="text" disabled={!isActive} onClick={removeAllCompleted}>
           Remove completed
         </Button>

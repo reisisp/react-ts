@@ -10,9 +10,11 @@ import TodoHeader from "./ui/header";
 
 import { taskList } from "./config/task-list";
 import styles from "./index.module.scss";
+import { filterData } from "./ui/footer/lib";
 
 const TodoWidget = () => {
   const [data, setData] = useState<ITodoItem[]>(taskList);
+  const [currentFilter, setCurrentFilter] = useState("all");
 
   const createNewItem = (newTitle: string) => {
     return { title: newTitle, completed: true };
@@ -26,18 +28,31 @@ const TodoWidget = () => {
     setData(data.filter((el) => el.completed));
   };
 
+  const changeFilter = (filter: string) => {
+    setCurrentFilter(filter);
+  };
+
   function toggleCompleted(title: string) {
     setData(data.map((el) => (el.title === title ? { ...el, completed: !el.completed } : el)));
   }
+
+  const filteredData = filterData(data, currentFilter);
 
   return (
     <List
       size="large"
       className={styles.itemList}
       header={<TodoHeader addItem={addItem} />}
-      footer={<TodoFooter removeAllCompleted={removeAllCompleted} data={data} />}
+      footer={
+        <TodoFooter
+          removeAllCompleted={removeAllCompleted}
+          changeFilter={changeFilter}
+          data={data}
+          currentFilter={currentFilter}
+        />
+      }
       bordered
-      dataSource={data}
+      dataSource={filteredData}
       renderItem={(item) => (
         <List.Item style={{ paddingTop: "10px", paddingBottom: "10px" }}>
           <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
