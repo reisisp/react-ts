@@ -17,10 +17,10 @@ const TodoHeader: FC<TodoHeaderProps> = ({ addItem }) => {
         initialValue=""
         validateFirst
         rules={[
-          { required: true, whitespace: true, message: "Must not be empty" },
+          { required: true, message: "Must not be empty" },
           {
             pattern: /^[^\s](|[a-zA-ZА-Яа-яЁё0-9_ ][a-zA-ZА-Яа-яЁё0-9_ ]*[^\s])$/,
-            message: "Must be letters or numbers whithout whitespace characters at the beginning and end of the line",
+            message: "Must be letters or numbers whithout whitespace at the beginning and end of the line",
           },
           { min: 3, message: "Must be at least 3 characters" },
           { max: 35, message: "Cannot be longer than 35 characters" },
