@@ -6,11 +6,14 @@ import { ITodoItem } from "shared/api";
 
 import { getFilteredData } from "entities/lib/get-filtered-data";
 
+import { v4 as uuidv4 } from "uuid";
+
 import TodoCardItem from "./ui/card-item";
 import TodoFooter from "./ui/footer";
 import TodoHeader from "./ui/header";
 
 import { taskList } from "./config/task-list";
+
 import styles from "./index.module.scss";
 
 const TodoWidget = () => {
@@ -18,7 +21,7 @@ const TodoWidget = () => {
   const [currentFilter, setCurrentFilter] = useState("all");
 
   const createNewItem = (newTitle: string) => {
-    return { title: newTitle, completed: true };
+    return { id: uuidv4(), title: newTitle, completed: true };
   };
 
   const addItem = (item: string) => {
@@ -33,8 +36,8 @@ const TodoWidget = () => {
     setCurrentFilter(filter);
   };
 
-  function toggleCompleted(title: string) {
-    setData(data.map((el) => (el.title === title ? { ...el, completed: !el.completed } : el)));
+  function toggleCompleted(id: string) {
+    setData(data.map((el) => (el.id === id ? { ...el, completed: !el.completed } : el)));
   }
 
   const filteredData = getFilteredData(data, currentFilter);
@@ -58,8 +61,8 @@ const TodoWidget = () => {
       <div className={styles.itemList__container}>
         {!filteredCount && <Empty />}
         {filteredData.map((item) => (
-          <List.Item key={item.title} className={styles.itemList__item}>
-            <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
+          <List.Item key={item.id} className={styles.itemList__item}>
+            <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.id)} />
           </List.Item>
         ))}
       </div>
