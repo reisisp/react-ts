@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from "react";
-import { Col, Row, Button } from "antd";
-
-import FilterTodos from "features/filter-todos";
-import ActiveCountTodos from "features/active-count-todos";
+import { Col, Row } from "antd";
 
 import { getActiveCount } from "entities/lib/get-active-count";
+
+import RemoveAllBtn from "features/remove-all-btn";
+import FilterTodos from "features/filter-todos";
+import ActiveCountTodos from "features/active-count-todos";
 
 import { TodoFooterProps } from "./config/type";
 
@@ -29,9 +30,9 @@ const TodoFooter: FC<TodoFooterProps> = ({ data, currentFilter, removeAllComplet
         <FilterTodos currentFilter={currentFilter} changeFilter={changeFilter} />
       </Col>
       <Col>
-        <Button block type="text" disabled={!isActive} onClick={removeAllCompleted}>
+        <RemoveAllBtn isActive={!isActive} confirm={removeAllCompleted}>
           Remove completed
-        </Button>
+        </RemoveAllBtn>
       </Col>
     </Row>
   );
