@@ -1,3 +1,17 @@
 .itemList { 
   width: 50vw;
 }
+
+.itemList__container {
+  height: 25vh;
+  overflow-y: scroll;
+}
+
+.itemList__container::-webkit-scrollbar {
+  width: 0;
+}
+
+.itemList__item {
+  padding-top: 10px !important;
+  padding-top: 10px !important;
+}

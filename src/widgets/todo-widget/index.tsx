@@ -53,13 +53,15 @@ const TodoWidget = () => {
         />
       }
       bordered
-      dataSource={filteredData}
-      renderItem={(item) => (
-        <List.Item style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-          <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
-        </List.Item>
-      )}
-    />
+    >
+      <div className={styles.itemList__container}>
+        {filteredData.map((item) => (
+          <List.Item key={item.title} className={styles.itemList__item}>
+            <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
+          </List.Item>
+        ))}
+      </div>
+    </List>
   );
 };
 
