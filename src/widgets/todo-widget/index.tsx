@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Empty, List } from "antd";
 
 import { useState } from "react";
 
@@ -38,6 +38,7 @@ const TodoWidget = () => {
   }
 
   const filteredData = getFilteredData(data, currentFilter);
+  const filteredCount = filteredData.length;
 
   return (
     <List
@@ -55,6 +56,7 @@ const TodoWidget = () => {
       bordered
     >
       <div className={styles.itemList__container}>
+        {!filteredCount && <Empty />}
         {filteredData.map((item) => (
           <List.Item key={item.title} className={styles.itemList__item}>
             <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.title)} />
