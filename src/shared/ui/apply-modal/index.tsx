@@ -3,8 +3,9 @@ import { Button, Modal } from "antd";
 
 import { ApplyModalProps } from "./config";
 
-const ApplyModal: FC<ApplyModalProps> = ({ isActive, confirm, children, msg }) => {
+const ApplyModal: FC<ApplyModalProps> = ({ isActive, confirm, children, msg, variant }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const type = variant === "v1" ? "ghost" : "text";
   const onOkHandler = () => {
     confirm();
     setModalOpen(false);
@@ -12,7 +13,7 @@ const ApplyModal: FC<ApplyModalProps> = ({ isActive, confirm, children, msg }) =
 
   return (
     <>
-      <Button type="text" disabled={isActive} onClick={() => setModalOpen(true)}>
+      <Button type={type} disabled={isActive} onClick={() => setModalOpen(true)}>
         {children}
       </Button>
       <Modal

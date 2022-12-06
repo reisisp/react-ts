@@ -3,6 +3,8 @@ import { Button, Typography } from "antd";
 
 import { CloseOutlined } from "@ant-design/icons";
 
+import RemoveTargetBtn from "features/remove-target-btn";
+
 import styles from "./index.module.scss";
 
 import { TodoCardItemProps } from "./config";
@@ -15,7 +17,9 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
       <Button type="link" onClick={toggleCompleted} style={{ paddingLeft: 0 }}>
         <Text delete={!item.completed}>{item.title}</Text>
       </Button>
-      <CloseOutlined onClick={removeItem} className={styles.btn} />
+      <RemoveTargetBtn confirm={removeItem} itemLabel={item.title}>
+        <CloseOutlined className={styles.btn} />
+      </RemoveTargetBtn>
     </>
   );
 };
