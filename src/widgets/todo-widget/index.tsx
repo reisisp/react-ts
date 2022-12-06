@@ -36,6 +36,11 @@ const TodoWidget = () => {
     setCurrentFilter(filter);
   };
 
+  function removeItem(id: string) {
+    const idx = data.findIndex((el) => el.id === id);
+    if (idx >= 0) setData([...data.slice(0, idx), ...data.slice(idx + 1, data.length + 1)]);
+  }
+
   function toggleCompleted(id: string) {
     setData(data.map((el) => (el.id === id ? { ...el, completed: !el.completed } : el)));
   }
@@ -62,7 +67,11 @@ const TodoWidget = () => {
         {!filteredCount && <Empty />}
         {filteredData.map((item) => (
           <List.Item key={item.id} className={styles.itemList__item}>
-            <TodoCardItem item={item} toggleCompleted={() => toggleCompleted(item.id)} />
+            <TodoCardItem
+              item={item}
+              toggleCompleted={() => toggleCompleted(item.id)}
+              removeItem={() => removeItem(item.id)}
+            />
           </List.Item>
         ))}
       </div>
