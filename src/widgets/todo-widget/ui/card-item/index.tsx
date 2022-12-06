@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
-import { Button, Input, Space, Typography } from "antd";
+import { Button, Input, Typography } from "antd";
 
 import { CloseOutlined, EditOutlined } from "@ant-design/icons";
 
 import RemoveTargetBtn from "features/remove-target-btn";
+
+import DateDistanceToNow from "features/date-distance-to-now";
 
 import styles from "./index.module.scss";
 
@@ -17,7 +19,7 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
   const [status, setStatus] = useState<"" | "warning">("");
 
   const editConfirm = () => {
-    if (editableStr.length >= 3) {
+    if (editableStr.length >= 3 && editableStr.length <= 35) {
       setStatus("");
       updateItem(item.id, editableStr);
       setIsEditing(false);
@@ -45,18 +47,21 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
           onPressEnter={editConfirm}
         />
       ) : (
-        <Space>
+        <div className={styles.item__main}>
           <Text onClick={toggleCompleted} delete={!item.completed} style={{ cursor: "pointer" }}>
             {editableStr}
           </Text>
           <Button type="ghost" onClick={() => setIsEditing(true)} className={styles.editBtn}>
             <EditOutlined />
           </Button>
-        </Space>
+        </div>
       )}
-      <RemoveTargetBtn confirm={removeItem} itemLabel={item.title}>
-        <CloseOutlined className={styles.btn} />
-      </RemoveTargetBtn>
+      <div className={styles.item__info}>
+        {!isEditig && <DateDistanceToNow dateValue={item.creationDate} />}
+        <RemoveTargetBtn confirm={removeItem} itemLabel={item.title}>
+          <CloseOutlined className={styles.btn} />
+        </RemoveTargetBtn>
+      </div>
     </>
   );
 };

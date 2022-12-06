@@ -20,8 +20,8 @@ const TodoWidget = () => {
   const [data, setData] = useState<ITodoItem[]>(taskList);
   const [currentFilter, setCurrentFilter] = useState("all");
 
-  const createNewItem = (newTitle: string) => {
-    return { id: uuidv4(), title: newTitle, completed: true };
+  const createNewItem = (newTitle: string): ITodoItem => {
+    return { id: uuidv4(), title: newTitle, completed: true, creationDate: Date.now() };
   };
 
   const addItem = (item: string) => {

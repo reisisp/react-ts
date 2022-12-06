@@ -7,8 +7,8 @@ const { Text } = Typography;
 
 dayjs.extend(relativeTime);
 
-const DateDistanceToNow: FC<{ date?: number }> = () => {
-  const formatedDate = dayjs(1670351126797).fromNow(true);
+const DateDistanceToNow: FC<{ dateValue: number }> = ({ dateValue }) => {
+  const formatedDate = dayjs(dateValue).fromNow(true);
   const str = `created ${formatedDate} ago`;
   return <Text>{str}</Text>;
 };

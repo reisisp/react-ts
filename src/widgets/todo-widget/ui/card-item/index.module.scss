@@ -11,3 +11,17 @@
     color: var(--color-primary);
   }
 }
+
+.item__main {
+  display: flex;
+  gap: 6px;
+  max-width: 60%;
+  align-items: center;
+}
+
+.item__info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 40%;
+}
