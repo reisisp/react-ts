@@ -36,6 +36,10 @@ const TodoWidget = () => {
     setCurrentFilter(filter);
   };
 
+  const updateItem = (id: string, label: string) => {
+    setData(data.map((el) => (el.id === id ? { ...el, title: label } : el)));
+  };
+
   function removeItem(id: string) {
     const idx = data.findIndex((el) => el.id === id);
     if (idx >= 0) setData([...data.slice(0, idx), ...data.slice(idx + 1, data.length + 1)]);
@@ -71,6 +75,7 @@ const TodoWidget = () => {
               item={item}
               toggleCompleted={() => toggleCompleted(item.id)}
               removeItem={() => removeItem(item.id)}
+              updateItem={updateItem}
             />
           </List.Item>
         ))}

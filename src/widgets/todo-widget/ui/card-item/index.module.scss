@@ -1,8 +1,13 @@
 .btn {
-  color: #1677ff;
+  color: var(--color-primary);
   font-size: 18px;
   &:hover {
     color: red;
   }
 }
 
+.editBtn {
+  &:hover {
+    color: var(--color-primary);
+  }
+}
