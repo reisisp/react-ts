@@ -9,8 +9,9 @@ const { Text } = Typography;
 const ItemTimer: FC<{
   value: number;
   itemId: string;
+  completed: boolean;
   updateItem: (id: string, value: number | string, key: string) => void;
-}> = ({ value, itemId, updateItem }) => {
+}> = ({ value, itemId, updateItem, completed }) => {
   const [time, setTime] = useState<number>(value);
   const [isRuning, setIsRuning] = useState<boolean>(false);
 
@@ -20,8 +21,8 @@ const ItemTimer: FC<{
   }, [itemId, time, updateItem]);
 
   useEffect(() => {
-    if (time <= 0) setIsRuning(false);
-  }, [time, isRuning]);
+    if (time <= 0 || !completed) setIsRuning(false);
+  }, [time, isRuning, completed]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -38,7 +39,7 @@ const ItemTimer: FC<{
     .toString()
     .padStart(2, "0");
 
-  const isActive = time <= 0;
+  const isActive = time <= 0 || !completed;
 
   return (
     <Space>

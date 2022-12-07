@@ -1,7 +1,9 @@
 export interface TodoHeaderProps {
-  addItem: (item: string) => void;
+  addItem: (itemName: string, itemTime: number) => void;
 }
 
 export interface ITodoForm {
   title: string;
+  minutes: number;
+  seconds: number | "";
 }

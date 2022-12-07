@@ -60,7 +60,9 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
       )}
       <div className={styles.item__info}>
         {!isEditig && <DateDistanceToNow dateValue={item.creationDate} />}
-        {!isEditig && <ItemTimer value={item.timerVal} itemId={item.id} updateItem={updateItem} />}
+        {!isEditig && (
+          <ItemTimer value={item.timerVal} itemId={item.id} updateItem={updateItem} completed={item.completed} />
+        )}
         <RemoveTargetBtn confirm={removeItem} itemLabel={item.title}>
           <CloseOutlined className={styles.btn} />
         </RemoveTargetBtn>

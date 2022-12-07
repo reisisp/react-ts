@@ -1,21 +1,31 @@
 import { FC } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, InputNumber } from "antd";
 
 import { TodoHeaderProps, ITodoForm } from "./config/type";
 
 const TodoHeader: FC<TodoHeaderProps> = ({ addItem }) => {
   const [form] = Form.useForm();
   const onFinish = (values: ITodoForm) => {
-    addItem(values.title);
+    let time = values.minutes * 60;
+    if (values.seconds) time += values.seconds;
+    addItem(values.title, time);
     form.resetFields();
   };
 
   return (
-    <Form form={form} name="addTodo" initialValues={{ remember: true }} onFinish={onFinish} autoComplete="off">
+    <Form
+      form={form}
+      name="addTodo"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      autoComplete="off"
+      style={{ display: "flex", gap: "10px" }}
+    >
       <Form.Item
         name="title"
         initialValue=""
         validateFirst
+        style={{ maxWidth: "100%", flexGrow: "1" }}
         rules={[
           { required: true, message: "Must not be empty" },
           {
@@ -27,6 +37,20 @@ const TodoHeader: FC<TodoHeaderProps> = ({ addItem }) => {
         ]}
       >
         <Input autoFocus size="large" placeholder="What needs to be done..." />
+      </Form.Item>
+      <Form.Item
+        style={{ maxWidth: "15%" }}
+        name="minutes"
+        initialValue=""
+        rules={[
+          { required: true, message: "" },
+          { type: "number", message: "" },
+        ]}
+      >
+        <InputNumber size="large" min={0} max={1000} placeholder="Min" />
+      </Form.Item>
+      <Form.Item style={{ maxWidth: "15%" }} name="seconds" initialValue="" rules={[{ type: "number", message: "" }]}>
+        <InputNumber size="large" min={0} max={59} placeholder="Sec" />
       </Form.Item>
       <Form.Item hidden>
         <Button htmlType="submit">Submit</Button>

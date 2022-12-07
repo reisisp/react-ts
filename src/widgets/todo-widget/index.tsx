@@ -20,12 +20,12 @@ const TodoWidget = () => {
   const [data, setData] = useState<ITodoItem[]>(taskList);
   const [currentFilter, setCurrentFilter] = useState("all");
 
-  const createNewItem = (newTitle: string): ITodoItem => {
-    return { id: uuidv4(), title: newTitle, completed: true, creationDate: Date.now(), timerVal: 30 };
+  const createNewItem = (title: string, timerVal: number): ITodoItem => {
+    return { id: uuidv4(), title, completed: true, creationDate: Date.now(), timerVal };
   };
 
-  const addItem = (item: string) => {
-    setData([...data, createNewItem(item)]);
+  const addItem = (itemName: string, itemTime: number) => {
+    setData([...data, createNewItem(itemName, itemTime)]);
   };
 
   const removeAllCompleted = () => {
@@ -51,7 +51,6 @@ const TodoWidget = () => {
 
   const filteredData = getFilteredData(data, currentFilter);
   const filteredCount = filteredData.length;
-
   return (
     <List
       size="large"
