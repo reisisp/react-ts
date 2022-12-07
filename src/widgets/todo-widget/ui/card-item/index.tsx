@@ -7,6 +7,8 @@ import RemoveTargetBtn from "features/remove-target-btn";
 
 import DateDistanceToNow from "features/date-distance-to-now";
 
+import ItemTimer from "features/item-timer";
+
 import styles from "./index.module.scss";
 
 import { TodoCardItemProps } from "./config";
@@ -21,7 +23,7 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
   const editConfirm = () => {
     if (editableStr.length >= 3 && editableStr.length <= 35) {
       setStatus("");
-      updateItem(item.id, editableStr);
+      updateItem(item.id, editableStr, "title");
       setIsEditing(false);
     } else {
       setStatus("warning");
@@ -58,6 +60,7 @@ const TodoCardItem: FC<TodoCardItemProps> = ({ item, toggleCompleted, removeItem
       )}
       <div className={styles.item__info}>
         {!isEditig && <DateDistanceToNow dateValue={item.creationDate} />}
+        {!isEditig && <ItemTimer value={item.timerVal} itemId={item.id} updateItem={updateItem} />}
         <RemoveTargetBtn confirm={removeItem} itemLabel={item.title}>
           <CloseOutlined className={styles.btn} />
         </RemoveTargetBtn>

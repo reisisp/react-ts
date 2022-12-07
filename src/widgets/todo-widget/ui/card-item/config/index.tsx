@@ -4,5 +4,5 @@ export interface TodoCardItemProps {
   item: ITodoItem;
   toggleCompleted: () => void;
   removeItem: () => void;
-  updateItem: (id: string, label: string) => void;
+  updateItem: (id: string, value: number | string, key: string) => void;
 }

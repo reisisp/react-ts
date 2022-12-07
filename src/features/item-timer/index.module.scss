@@ -1,0 +1,10 @@
+.btn {
+  font-size: 16px;
+  line-height: 1;
+  &:hover {
+    color: var(--color-primary);
+  }
+  &:disabled {
+    color: gray;
+  }
+}

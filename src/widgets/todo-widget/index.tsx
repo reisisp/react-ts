@@ -21,7 +21,7 @@ const TodoWidget = () => {
   const [currentFilter, setCurrentFilter] = useState("all");
 
   const createNewItem = (newTitle: string): ITodoItem => {
-    return { id: uuidv4(), title: newTitle, completed: true, creationDate: Date.now() };
+    return { id: uuidv4(), title: newTitle, completed: true, creationDate: Date.now(), timerVal: 30 };
   };
 
   const addItem = (item: string) => {
@@ -36,8 +36,8 @@ const TodoWidget = () => {
     setCurrentFilter(filter);
   };
 
-  const updateItem = (id: string, label: string) => {
-    setData(data.map((el) => (el.id === id ? { ...el, title: label } : el)));
+  const updateItem = (id: string, value: number | string, key: string) => {
+    setData(data.map((el) => (el.id === id ? { ...el, [key]: value } : el)));
   };
 
   function removeItem(id: string) {

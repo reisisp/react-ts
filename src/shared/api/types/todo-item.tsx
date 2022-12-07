@@ -3,4 +3,5 @@ export interface ITodoItem {
   title: string;
   completed: boolean;
   creationDate: number;
+  timerVal: number;
 }
